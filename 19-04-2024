@@ -1,0 +1,24 @@
+class Solution{
+	public:
+	vector<int> findMissing(int a[], int b[], int n, int m) 
+	{ 
+        vector<int>ans;
+        set<int>temp;
+        for(int i=0;i<m;i++)
+        {
+            temp.insert(b[i]);
+        }
+        for(int i=0;i<n;i++)
+        {
+            int x=temp.size();
+            temp.insert(a[i]);
+            int y=temp.size();
+            if(x!=y)
+            {
+                ans.push_back(a[i]);
+                temp.erase(a[i]);
+            }
+        }
+        return ans;
+	} 
+};
