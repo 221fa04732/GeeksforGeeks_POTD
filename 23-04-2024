@@ -1,0 +1,15 @@
+class Solution {
+  public:
+    int mod=1e9+7;
+    int firstElement(int n) 
+    {
+        long long a=1,b=0;
+        for(int i=1;i<n;i++)
+        {
+            long long temp=a%mod;
+            a=(a+b)%mod;
+            b=temp%mod;
+        }
+        return a%mod;
+    }
+};
