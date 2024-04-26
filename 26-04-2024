@@ -1,0 +1,50 @@
+class Solution {
+  public:
+    vector<int> FindExitPoint(int n, int m, vector<vector<int>>& matrix) 
+    {
+        char dir='e';
+        int ans_x=0,ans_y=0;
+        int i=0,j=0;
+        while(i<n && j<m && i>=0 && j>=0)
+        {
+            ans_x=i;
+            ans_y=j;
+            if(matrix[i][j]==0)
+            {
+                if(dir=='e')
+                    j++;
+                else if(dir=='w')
+                    j--;
+                else if(dir=='n')
+                    i--;
+                else 
+                    i++;
+            }
+            else 
+            {
+                matrix[i][j]=0;
+                if(dir=='e')
+                {
+                    i++;
+                    dir='s';
+                }
+                else if(dir=='w')
+                {
+                    i--;
+                    dir='n';
+                }
+                else if(dir=='n')
+                {
+                    j++;
+                    dir='e';
+                }
+                else
+                {
+                    j--;
+                    dir='w';
+                }
+            }
+        }
+        return{ans_x,ans_y};
+    }
+};
