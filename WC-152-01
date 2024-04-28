@@ -1,0 +1,18 @@
+class Solution{   
+public:
+    vector<int> frequency(int n, vector<int> &a)
+    {
+        vector<int>ans;
+        int arr[1000001];
+        for(int i=0;i<n;i++)
+        {
+            arr[a[i]+1000]++;
+        }
+        for(int i=0;i<n;i++)
+        {
+            ans.push_back(arr[a[i]+1000]);
+            arr[a[i]+1000]--;
+        }
+        return ans;
+    }
+};
