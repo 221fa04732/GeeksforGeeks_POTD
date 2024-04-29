@@ -1,0 +1,23 @@
+class Solution {
+    public:
+    Node* deleteK(Node *head,int k)
+    {
+        if(k==1)return NULL;
+        k--;
+        Node* temp=head;
+        int count=1;
+        while(temp)
+        {
+            while(temp && k!=count)
+            {
+                count++;
+                temp=temp->next;
+            }
+            if(temp && temp->next)
+                temp->next=temp->next->next;
+                count=0;
+            
+        }
+        return head;
+    }
+};
