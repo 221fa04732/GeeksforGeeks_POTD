@@ -1,0 +1,46 @@
+class Solution {
+  public:
+    struct Node* arrangeCV(Node* head) 
+    {
+        Node* prev_v=NULL;
+        Node* head_v=NULL;
+        Node* prev_c=NULL;
+        Node* head_c=NULL;
+        while(head)
+        {
+            if(head->data=='a'||head->data=='e'||head->data=='i'||head->data=='o'||head->data=='u')
+            {
+                Node* n=new Node(head->data);
+                if(head_v==NULL)
+                {
+                    head_v=n;
+                }
+                else 
+                {
+                    prev_v->next=n;
+                }
+                prev_v=n;
+            }
+            else 
+            {
+                Node* n=new Node(head->data);
+                if(head_c==NULL)
+                {
+                    head_c=n;
+                }
+                else 
+                {
+                    prev_c->next=n;
+                }
+                prev_c=n;
+            }
+            head=head->next;
+        }
+        if(head_v)
+        {
+            prev_v->next=head_c;
+            return head_v;
+        }
+        return head_c;
+    }
+};
