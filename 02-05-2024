@@ -1,0 +1,36 @@
+class Solution
+{
+    public:
+    void preorder(Node *root,vector<int>&ans)
+    {
+        if(root==NULL)
+        {
+            return;
+        }
+        preorder(root->left,ans);
+        ans.push_back(root->data);
+        preorder(root->right,ans);
+    }
+    vector<int> serialize(Node *root) 
+    {
+        vector<int>ans;
+        preorder(root,ans);
+        return ans;
+    }
+    Node * deSerialize(vector<int> &A)
+    {
+        int size=A.size();
+        Node *root=new Node(A[0]);
+        for(int i=1;i<size;i+=2)
+        {
+            Node *child_root=new Node(A[i]);
+            child_root->left=root;
+            if(i+1<size)
+            {
+                child_root->right=new Node(A[i+1]);
+            }
+            root=child_root;
+        }
+        return root;
+    }
+};
