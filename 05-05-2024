@@ -1,0 +1,33 @@
+class Solution{
+  public:
+    void find_pos(Node *root,int pos,vector<vector<int>>&ans)
+    {
+        if(root==NULL)
+        {
+            return;
+        }
+        ans.push_back({pos,root->data});
+        find_pos(root->left,pos-1,ans);
+        find_pos(root->right,pos+1,ans);
+    }
+    vector <int> verticalSum(Node *root) 
+    {
+        vector<vector<int>>ans;
+        find_pos(root,0,ans);
+        sort(ans.begin(),ans.end());
+        vector<int>answer;
+        int i=0;
+        while(i<ans.size())
+        {
+            int j=i,sum=0;
+            while(j<ans.size() && ans[i][0]==ans[j][0])
+            {
+                sum+=ans[j][1];
+                j++;
+            }
+            answer.push_back(sum);
+            i=j;
+        }
+        return answer;
+    }
+};
