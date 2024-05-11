@@ -1,0 +1,19 @@
+class Solution {
+  public:
+    vector<int> jugglerSequence(int n) 
+    {
+        vector<int>ans={n};
+        while(ans[ans.size()-1]!=1)
+        {
+            if(ans[ans.size()-1]%2==0)
+            {
+                ans.push_back(sqrt(ans[ans.size()-1]));
+            }
+            else 
+            {
+                ans.push_back(sqrt(pow(ans[ans.size()-1],3)));
+            }
+        }
+        return ans;
+    }
+};
